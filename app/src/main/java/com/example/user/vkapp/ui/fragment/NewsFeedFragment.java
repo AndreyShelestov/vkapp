@@ -12,6 +12,7 @@ import com.example.user.vkapp.rest.api.WallApi;
 import com.example.user.vkapp.rest.model.response.BaseItemResponse;
 import com.example.user.vkapp.rest.model.response.Full;
 import com.example.user.vkapp.rest.model.response.WallGetResponse;
+import com.example.user.vkapp.rest.model.response.request.WallGetRequestModel;
 
 import javax.inject.Inject;
 
@@ -52,7 +53,7 @@ public class NewsFeedFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mWallApi.get("-86529522", CurrentUser.getAccessToken(), 1, "5.74").enqueue(new Callback<WallGetResponse>() {
+        mWallApi.get(new WallGetRequestModel(-86529522).toMap()).enqueue(new Callback<WallGetResponse>() {
             @Override
             public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
                 Toast.makeText(getActivity(), "Likes: "
