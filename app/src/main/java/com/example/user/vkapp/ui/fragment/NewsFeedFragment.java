@@ -1,8 +1,6 @@
 package com.example.user.vkapp.ui.fragment;
 
 
-
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
@@ -13,6 +11,7 @@ import com.example.user.vkapp.R;
 import com.example.user.vkapp.rest.api.WallApi;
 import com.example.user.vkapp.rest.model.response.BaseItemResponse;
 import com.example.user.vkapp.rest.model.response.Full;
+import com.example.user.vkapp.rest.model.response.WallGetResponse;
 
 import javax.inject.Inject;
 
@@ -53,14 +52,15 @@ public class NewsFeedFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mWallApi.get("-86529522", CurrentUser.getAccessToken(), 1, "5.74").enqueue(new Callback<Full<BaseItemResponse>>() {
+        mWallApi.get("-86529522", CurrentUser.getAccessToken(), 1, "5.74").enqueue(new Callback<WallGetResponse>() {
             @Override
-            public void onResponse(Call<Full<BaseItemResponse>> call, Response<Full<BaseItemResponse>> response) {
-                Toast.makeText(getActivity(), "Count: " + response.body().response.getCount(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
+                Toast.makeText(getActivity(), "Likes: "
+                        + response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<Full<BaseItemResponse>> call, Throwable t) {
+            public void onFailure(Call<WallGetResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });
