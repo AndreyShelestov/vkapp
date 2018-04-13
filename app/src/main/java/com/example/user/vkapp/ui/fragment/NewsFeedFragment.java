@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import com.example.user.vkapp.CurrentUser;
 import com.example.user.vkapp.MyApplication;
 import com.example.user.vkapp.R;
 import com.example.user.vkapp.rest.api.WallApi;
-import com.example.user.vkapp.rest.model.response.BaseItemResponse;
-import com.example.user.vkapp.rest.model.response.Full;
 import com.example.user.vkapp.rest.model.response.WallGetResponse;
 import com.example.user.vkapp.rest.model.response.request.WallGetRequestModel;
 
